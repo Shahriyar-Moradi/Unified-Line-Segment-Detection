@@ -1,11 +1,12 @@
 # General configurations
 gpu: 0
 seed: 0
-type: 'fisheye'
-order: 2  # [1, 2, 3, 4]
+type: 'pinhole'
+order: 1  # [1, 2, 3, 4]
 
 # Path configurations
-dataset_name: 'fwireframe'  # ['wireframe', 'york', 'fwireframe', 'fyork', 'sun360']
+dataset_name: 'dop'  # ['wireframe', 'york', 'fwireframe', 'fyork', 'sun360']
+# dataset_name: 'wireframe'  # ['wireframe', 'york', 'fwireframe', 'fyork', 'sun360']
 raw_dataset_path: 'dataset'
 train_dataset_path: 'dataset'
 test_dataset_path: 'dataset'
@@ -13,8 +14,8 @@ groundtruth_path: 'dataset'
 output_path: 'output'
 figure_path: 'figure'
 log_path: 'log'
-model_path: 'model'
-model_name: 'fisheye.pkl'
+model_path: '/home/mora_sh/Unified-Line-Segment-Detection/model/results/train2'
+model_name: 'epoch-003.pkl'
 config_path: ''
 config_file: ''
 
@@ -23,17 +24,17 @@ num_workers: 4
 lr: 0.0004
 weight_decay: 0.0001
 step_size: 25
-num_epochs: 30
-train_batch_size: 6
+num_epochs: 5
+train_batch_size: 2
 test_batch_size: 1
 print_freq: 50
 save_freq: 1
-save_temp: False
+save_temp: True
 
-# test configurations
+# Test configurations
 save_image: False
 evaluate: False
-score_thresh: 0.9
+score_thresh: 0.8
 
 # Network configurations
 depth: 4
@@ -49,7 +50,7 @@ nms_size: 3
 n_pts: 32
 weights: [0.5, 8.0, 0.25, 8.0, 0.25, 1.0, 0.1]
 
-# Dataset configurations
+# Dataset
 image_size: [512, 512]
 heatmap_size: [128, 128]
 n_stc_posl: 300

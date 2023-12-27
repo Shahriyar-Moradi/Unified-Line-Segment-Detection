@@ -40,7 +40,8 @@ def calc_AP(rcs, prs):
 def calc_APJ(junc_gts, junc_preds, im_ids, distance):
     n_gt = sum(junc_gt.shape[0] for junc_gt in junc_gts)
     n_pred = junc_preds.shape[0]
-    tp, fp = np.zeros(n_pred, dtype=np.float), np.zeros(n_pred, dtype=np.float)
+    tp, fp = np.zeros(n_pred, dtype=np.float64), np.zeros(n_pred, dtype=np.float64)
+    # tp, fp = np.zeros(n_pred, dtype=np.float), np.zeros(n_pred, dtype=np.float)
     hits = [[False for _ in junc_gt] for junc_gt in junc_gts]
 
     for i in range(n_pred):
@@ -78,7 +79,8 @@ def calc_mAPJ(junc_gts, junc_preds, im_ids, distances):
 def calc_sAP(line_gts, line_preds, im_ids, distance):
     n_gt = sum(line_gt.shape[0] for line_gt in line_gts)
     n_pred, n_pts = line_preds.shape[0], line_preds.shape[1]
-    tp, fp = np.zeros(n_pred, dtype=np.float), np.zeros(n_pred, dtype=np.float)
+    tp, fp = np.zeros(n_pred, dtype=np.float64), np.zeros(n_pred, dtype=np.float64)
+    # tp, fp = np.zeros(n_pred, dtype=np.float), np.zeros(n_pred, dtype=np.float)
     hits = [[False for _ in line_gt] for line_gt in line_gts]
 
     for i in range(n_pred):

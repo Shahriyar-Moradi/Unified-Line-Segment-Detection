@@ -5,7 +5,8 @@ type: 'pinhole'
 order: 1  # [1, 2, 3, 4]
 
 # Path configurations
-dataset_name: 'wireframe'  # ['wireframe', 'york', 'fwireframe', 'fyork', 'sun360']
+dataset_name: 'dop'  # ['wireframe', 'york', 'fwireframe', 'fyork', 'sun360']
+# dataset_name: 'wireframe'  # ['wireframe', 'york', 'fwireframe', 'fyork', 'sun360']
 raw_dataset_path: 'dataset'
 train_dataset_path: 'dataset'
 test_dataset_path: 'dataset'
@@ -13,8 +14,8 @@ groundtruth_path: 'dataset'
 output_path: 'output'
 figure_path: 'figure'
 log_path: 'log'
-model_path: 'model'
-model_name: 'pinhole.pkl'
+model_path: '/home/mora_sh/Unified-Line-Segment-Detection/model/results/train2'
+model_name: 'epoch-003.pkl'
 config_path: ''
 config_file: ''
 
@@ -23,12 +24,12 @@ num_workers: 4
 lr: 0.0004
 weight_decay: 0.0001
 step_size: 25
-num_epochs: 30
-train_batch_size: 6
+num_epochs: 5
+train_batch_size: 2
 test_batch_size: 1
 print_freq: 50
 save_freq: 1
-save_temp: False
+save_temp: True
 
 # Test configurations
 save_image: False

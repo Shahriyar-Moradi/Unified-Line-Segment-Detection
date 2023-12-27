@@ -152,6 +152,10 @@ def json2npz(src_path, dst_path, split, cfg, plot=False):
                 lines = bez.fit_line(pts_list, order=2)[0]
                 centers = lines[:, 1]
                 lines = bez.fit_line(pts_list, order=cfg.order)[0]
+                if len(lines.shape) == 1:
+                    centers = lines
+                elif len(lines.shape) == 2:
+                    centers = lines[:,1]
 
                 prefix = os.path.join(dst_path, split, filename.split('.')[0] + f'_{i}')
                 save_npz(prefix, image, lines.copy(), centers, cfg)
