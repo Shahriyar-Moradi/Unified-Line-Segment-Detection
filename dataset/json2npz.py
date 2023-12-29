@@ -125,8 +125,7 @@ def json2npz(src_path, dst_path, split, cfg, plot=False):
         shutil.rmtree(os.path.join(dst_path, split))
     os.makedirs(os.path.join(dst_path, split), exist_ok=True)
 
-    tfs = [aug.Noop(), aug.HorizontalFlip(), aug.VerticalFlip(),
-           aug.Compose([aug.HorizontalFlip(), aug.VerticalFlip()])]
+    tfs = [aug.Noop(), aug.HorizontalFlip(), aug.VerticalFlip()] # Remove Compose tfm
 
     def call_back(data):
         filename = data['filename']
@@ -147,10 +146,10 @@ def json2npz(src_path, dst_path, split, cfg, plot=False):
                 image, lines = tfs[i](image0, lines0)
                 if cfg.type == 'spherical':
                     lines = camera.truncate_line(lines)
-                lines = camera.remove_line(lines, thresh=10.0)
+                lines = camera.remove_line(lines, thresh=10.0) # lines dims become [0, 2, 2] for Compose tfm
                 pts_list = camera.interp_line(lines)
                 lines = bez.fit_line(pts_list, order=2)[0]
-                centers = lines[:, 1]
+                centers = lines[:, 1] # Cannot access an index whose size is 0 when lines dims are [0, 2, 2]
                 lines = bez.fit_line(pts_list, order=cfg.order)[0]
                 if len(lines.shape) == 1:
                     centers = lines
